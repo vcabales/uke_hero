@@ -8,6 +8,8 @@
 <script src="js/test.js" type="text/javascript"></script>
 <script src="js/Tone.js" type="text/javascript"></script>
 <script src="js/p5/p5.js" type="text/javascript"></script>
+<script src="js/p5/p5.dom.js" type="text/javascript"></script>
+<script src="js/p5/p5.serialport.js" type="text/javascript"></script>
 <!-- midi.js -->
 <script src="js/inc/shim/Base64.js" type="text/javascript"></script>
 <script src="js/inc/shim/Base64binary.js" type="text/javascript"></script>
@@ -110,6 +112,13 @@ body, html {
 
 <script>
 var serial;
+
+function setup() {
+  serial = new p5.SerialPort();
+
+  var portlist = serial.list();
+  console.log(portlist);
+}
 
 </script>
 
