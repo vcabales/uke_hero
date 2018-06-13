@@ -102,15 +102,49 @@ body, html {
       <li>6 Push Buttons </li>
       <li><a href="https://www.sparkfun.com/products/13162">Sparkfun ZX Distance and Gesture Sensor</a></li>
       <li>Lots of wires</li>
-      <li>Lots of solder</li>
+      <li>More solder than I would have liked to apply</li>
+      <li>Duct tape!</li>
     </ul>
     <div class="w3-center">
       <img src="img/wiring.JPG" style="width:100%;max-width:400px" class="w3-margin-top">
       <p style="font-size:15px">Peep the messy wires that are hidden in the box.</p>
     </div>
-    <p style="text-align: justify"><strong>Lesson learned:</strong> The less sensors you have in your hardware project, the more manageable it will be. I also wish I used soft pots to represent strings instead of the gesture sensor. The pots could simulate frets and give the user more control over the pitches they played. My idea behind using the gesture sensor was to simulate a strumming motion, but it turns out that strumming air isn't as fun as strumming physical strings. </p>
+    <p style="text-align: justify"><strong>Lessons learned:</strong> 1) Duct tape is a wonderful invention. 2) The less sensors you have in your hardware project, the more manageable it will be. I also wish I used soft pots to represent strings instead of the gesture sensor. The pots could simulate frets and give the user more control over the pitches they played. My idea behind using the gesture sensor was to simulate a strumming motion, but it turns out that strumming air isn't as fun as strumming physical strings. I also originally soldered the gesture sensor incorrectly, but Nathan Shelly kindly taught me how to desolder, and I was very grateful for that. ʕノ•ᴥ•ʔノ ︵ ┻━┻</p>
     <p><span class="w3-tag">CODE</span></p>
     <p style="text-align: justify">This section focuses mostly on Max and a few cool things I learned about serial communication through Node. If you want to check out the C code for the Arduino, feel free to view the simple script I have on <a href="https://github.com/vcabales/uke_hero/blob/master/arduino/uke_hero.ino" target="blank">Github</a>. Fair warning, though, the code still needs to be cleaned up.</p>
+    <p style="font-size:20px"><strong><i><u>Max</u></i></strong></p>
+    <p style="text-align: justify">The messy Max patch pictured below reads in on and off signals sent from the buttons through the serial port. It doesn't currently read in data from the gesture sensor, although it's definitely capable of doing so. All you need to do is unpack two more values for the sensor's x- and z-coordinates. You can customize the chords you play by adjusting the base note of each chord. In the image, that's the 0 number object next to the +4, +7, and +12. When I started the course, I didn't even know that Max was a thing, but it turns out that it's a pretty powerful tool to build music software. I honestly barely know the basics, and I find that there's a bit of a learning curve to this deceptively simple program. I will happily take recommendations on how to improve this Max patch. Also, shoutout to Khoa Truong for helping me with all my Max issues and to Julia Wilkins for giving me advice! ｡^‿^｡</p>
+    <div class="w3-center">
+      <img src="img/max_patch.png" style="width:700px">
+    </div>
+    <p style="font-size:20px"><strong><i><u>SerialPort in Node</u></i></strong></p>
+    <p style="text-align:justify">To appease my own curiosity, I wanted to explore reading from the serial port in JavaScript. It turns out that there's a great resource for this called <a href="https://node-serialport.github.io/node-serialport/" target="blank">Node Serialport</a>! I originally tried to use p5's serial port reader, but I unfortunately ran into quite a few errors when trying to install it through npm.</a></p>
+    <p style="text-align:justify">Through Node, I printed out the data that was streamed in from the serial port. Prior to decoding it, the data looked like this: </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p>	&lt;Buffer 00 00 00 00&gt; <br/> &lt;Buffer 00 00 00 00&gt;</p>
+    </div>
+    <p style="text-align:justify">I initially didn't know what to do with this data, and started looking into different parsers that the SerialPort API mentioned. However, it turns out that decoding the buffer is as simple as calling the <span class="w3-light-grey"><i>toString()</i></span> function in JavaScript. </p>
+    <p style="text-align:justify">Once I got a consistent stream of readable data going, I realized that I probably needed a WebSocket to receive the data on the client side and interact with it. I don't currently have time to implement this, but it would be an interesting side project in the future. I also got to learn a few cool things about how data from your serial port can interact with your browser, which was pretty fun to look into. Here's the code to read from your serial port in JavaScript if you want to try it out: </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p>//List all available ports</p>
+      <p>	SerialPort.list(function (err,results) { <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (err) <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw err; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(results); <br />
+    });</p>
+    <p>//Connect to serial port</p>
+    <p>var port = new SerialPort('/dev/tty.usbmodem1411',{baudRate: 9600}, <br />(err) => { <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (err) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('Error', err.message); <br />
+    });</p>
+    <p>//Read in data</p>
+    <p>port.on('data', (data,err) { <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(data.toString()); <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (err) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('Error', err.message); <br />
+    });</p>
+    </div>
+    <p><span class="w3-tag">SOME REACH GOALS</span></p>
   </div>
 </div>
 
