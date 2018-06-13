@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>uke hero</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -32,7 +32,8 @@ body, html {
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("#");
+    background-color: black;
+    /* background-image: url("/img/uke_cover.JPG"); */
     min-height: 75%;
 }
 .menu {
@@ -51,24 +52,18 @@ body, html {
       <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
     </div>
     <div class="w3-col s3">
-      <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+      <a href="#takeaways" class="w3-button w3-block w3-black">TAKEAWAYS</a>
     </div>
     <div class="w3-col s3">
-      <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
+      <a href="#contact" class="w3-button w3-block w3-black">CONTACT</a>
     </div>
   </div>
 </div>
 
 <!-- Header with image -->
 <header class="bgimg w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-    <span class="w3-tag">Open from 6am to 5pm</span>
-  </div>
   <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
-  </div>
-  <div class="w3-display-bottomright w3-center w3-padding-large">
-    <span class="w3-text-white">15 Adr street, 5015</span>
+    <span class="w3-text-white" style="font-size:90px">uke hero</span>
   </div>
 </header>
 
@@ -78,49 +73,57 @@ body, html {
 <!-- About Container -->
 <div class="w3-container" id="about">
   <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE CAFE</span></h5>
-    <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
-    <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
-      <p>Chef, Coffeeist and Owner: Liam Brown</p>
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT</span></h5>
+    <div class="w3-center">
+      <img src="img/uke_cover.JPG" style="width:100%;max-width:400px" class="w3-margin-top">
     </div>
-    <img src="#" style="width:100%;max-width:1000px" class="w3-margin-top">
-    <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
-    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
+    <p><strong>Made by:</strong> Victoria Cabales</p>
+    <p><strong>For:</strong> EECS 397 Digital Luthier, Northwestern University, Professor Bryan Pardo</p>
+    <p style="text-align:justify">The idea behind <span class="w3-tag">UKE HERO</span> was to create a low barrier to entry instrument that would help anyone play simple harmonies, regardless of musical background. As of right now, the user can play six customizable chords by pressing down on the buttons. The project was very much inspired by Guitar Hero and <a href="http://cigarboxguitars.com/" target="blank">the cigar box guitar</a>. Check out the video for more info!</p>
+    <div class="w3-center">
+      <video width="400" controls>
+        <source src="video/digital_luthier.mov">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+  </div>
+</div>
+
+
+<!-- Takeaways Container -->
+<div class="w3-container" id="takeaways">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TAKEAWAYS</span></h5>
+    <p style="text-align: justify">Although the project is still far from where I want it to be, I can definitely say that I learned a lot from working on it (especially about sawing, sanding, and drilling wood - something I never expected to get out of an EECS class). Here's a bit about what went into the project:</p>
+    <p><span class="w3-tag">HARDWARE</span></p>
+    <ul>
+      <li>Arduino Uno Microcontroller</li>
+      <li>6 10K Ohm Resistors</li>
+      <li>6 Push Buttons </li>
+      <li><a href="https://www.sparkfun.com/products/13162">Sparkfun ZX Distance and Gesture Sensor</a></li>
+      <li>Lots of wires</li>
+      <li>Lots of solder</li>
+    </ul>
+    <div class="w3-center">
+      <img src="img/wiring.JPG" style="width:100%;max-width:400px" class="w3-margin-top">
+      <p style="font-size:15px">Peep the messy wires that are hidden in the box.</p>
+    </div>
+    <p style="text-align: justify"><strong>Lesson learned:</strong> The less sensors you have in your hardware project, the more manageable it will be. I also wish I used soft pots to represent strings instead of the gesture sensor. The pots could simulate frets and give the user more control over the pitches they played. My idea behind using the gesture sensor was to simulate a strumming motion, but it turns out that strumming air isn't as fun as strumming physical strings. </p>
+    <p><span class="w3-tag">CODE</span></p>
+    <p>I already knew how to program microcontrollers going into the class, so if you want to check out the C code, feel free to view the simple script I have on <a href="https://github.com/vcabales/uke_hero/blob/master/arduino/uke_hero.ino" target="blank">Github</a>. Fair warning, though, the code still needs to be cleaned up.</p>
   </div>
 </div>
 
 <!-- Contact/Area Container -->
-<div class="w3-container" id="where" style="padding-bottom:32px;">
+<div class="w3-container" id="contact">
   <div class="w3-content" style="max-width:700px">
-    <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
-    <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2017-11-16T20:00"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-      <p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
-    </form>
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CONTACT</span></h5>
+
   </div>
 </div>
 
 <!-- End page content -->
 </div>
-
-
-<script>
-var serial;
-
-function setup() {
-  serial = new p5.SerialPort();
-
-  var portlist = serial.list();
-  console.log(portlist);
-}
-
-</script>
 
 
 </body>
