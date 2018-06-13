@@ -1,0 +1,30 @@
+{
+  "name": "uke_hero",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcabales/uke_hero.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vcabales/uke_hero/issues"
+  },
+  "homepage": "https://github.com/vcabales/uke_hero#readme",
+  "dependencies": {
+    "@serialport/parser-readline": "^1.0.5",
+    "consolidate": "^0.15.1",
+    "express": "^4.16.3",
+    "npm": "^6.1.0",
+    "p5": "^0.6.1",
+    "serialport": "^6.2.0",
+    "swig": "^1.4.2",
+    "websocket": "^1.0.26"
+  }
+}
